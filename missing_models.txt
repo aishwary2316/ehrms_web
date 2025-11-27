@@ -1,0 +1,69 @@
+
+class PostingHistory:
+    """Posting history model."""
+    def __init__(self, **kwargs):
+        self.id = str(kwargs.get('_id', ''))
+        self.user_id = kwargs.get('user_id')
+        self.station_id = kwargs.get('station_id')
+        self.from_date = kwargs.get('from_date')
+        self.to_date = kwargs.get('to_date')
+        self.remarks = kwargs.get('remarks', '')
+        self.created_at = kwargs.get('created_at')
+    
+    @classmethod
+    def from_dict(cls, doc):
+        if not doc:
+            return None
+        return cls(**doc)
+
+
+class Kanglasha:
+    """Kanglasha model."""
+    def __init__(self, **kwargs):
+        self.id = str(kwargs.get('_id', ''))
+        self.personnel_id = kwargs.get('personnel_id')
+        self.record_type = kwargs.get('record_type')
+        self.status = kwargs.get('status')
+        self.order_number = kwargs.get('order_number')
+        self.order_date = kwargs.get('order_date')
+    
+    @classmethod
+    def from_dict(cls, doc):
+        if not doc:
+            return None
+        return cls(**doc)
+
+
+class PaySlip:
+    """PaySlip model."""
+    def __init__(self, **kwargs):
+        self.id = str(kwargs.get('_id', ''))
+        self.user_id = kwargs.get('user_id')
+        self.month = kwargs.get('month')
+        self.year = kwargs.get('year')
+        self.file_path = kwargs.get('file_path')
+        self.file_name = kwargs.get('file_name')
+    
+    @classmethod
+    def from_dict(cls, doc):
+        if not doc:
+            return None
+        return cls(**doc)
+
+
+class StationAsset:
+    """StationAsset model."""
+    def __init__(self, **kwargs):
+        self.id = str(kwargs.get('_id', ''))
+        self.station_id = kwargs.get('station_id')
+        self.asset_name = kwargs.get('asset_name')
+        self.asset_code = kwargs.get('asset_code')
+        self.asset_type = kwargs.get('asset_type')
+        self.quantity = kwargs.get('quantity', 1)
+        self.condition = kwargs.get('condition')
+    
+    @classmethod
+    def from_dict(cls, doc):
+        if not doc:
+            return None
+        return cls(**doc)

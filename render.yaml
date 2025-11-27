@@ -1,0 +1,31 @@
+services:
+  # Web Service
+  - type: web
+    name: ehrms-app
+    env: python
+    region: singapore
+    plan: free
+    branch: main
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.0
+      - key: DATABASE_URL
+        fromDatabase:
+          name: ehrms-db
+          property: connectionString
+      - key: SECRET_KEY
+        generateValue: true
+      - key: FLASK_ENV
+        value: production
+    healthCheckPath: /health
+    autoDeploy: true
+
+  # PostgreSQL Database
+  - type: pstore
+    name: ehrms-db
+    region: singapore
+    plan: free
+    databaseName: ehrms
+    databaseUser: ehrms_user
